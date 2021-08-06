@@ -1,18 +1,18 @@
 ---
 title: "Felicia Cruz"
-description: |
-  Welcome to my website. I hope you enjoy it!
+image: "felicia2.png"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/cruz-felicia/"
+  - label: Twitter
+    url: "https://twitter.com/"
+  - label: GitHub
+    url: "https://github.com/fmcruz23"
+  - label: Email
+    url: "fmcruz23@gmail.com"
+output:
+  postcards::jolla
 site: distill::distill_website
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
-
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
-
-```
-
+ 
+This is my professional profile! 
