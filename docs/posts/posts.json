@@ -1,0 +1,36 @@
+[
+  {
+    "path": "posts/2021-08-10-a-function-i-learned/",
+    "title": "Working with ggplot",
+    "description": "using ggplot with the palmerpenguins package",
+    "author": [
+      {
+        "name": "Felicia Cruz",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-10",
+    "categories": [],
+    "contents": "\n\n\n\nThis scatterplot shows a positive correlation between penguin flipper length and body mass. While the Adelie and Chinstrap species are similar in size, the Gentoos weigh a lot more and have much longer flippers.\n\n\n\n",
+    "preview": "posts/2021-08-10-a-function-i-learned/images/palmerpenguins.jpg",
+    "last_modified": "2021-08-10T11:09:00-07:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2021-08-10-hello/",
+    "title": "My First Blog Post",
+    "description": "realy important info",
+    "author": [
+      {
+        "name": "Felicia Cruz",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-10",
+    "categories": [],
+    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-10T10:23:53-07:00",
+    "input_file": {}
+  }
+]

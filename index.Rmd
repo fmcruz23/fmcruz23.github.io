@@ -1,6 +1,6 @@
 ---
 title: "Felicia Cruz"
-image: "felicia2.png"
+image: "sands.jpg"
 links:
   - label: LinkedIn
     url: "https://www.linkedin.com/in/cruz-felicia/"
