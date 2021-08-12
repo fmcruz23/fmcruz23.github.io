@@ -14,3 +14,4 @@ navbar:
     - text: "My Blog"
       href: blog.html
 output: distill::distill_article
+theme: theme.css
