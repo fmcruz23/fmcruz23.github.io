@@ -9,6 +9,7 @@ date: 08-16-2021
 output:
   distill::distill_article:
     self_contained: false
+preview: images/bren_outside.jpeg
 ---
 
 
