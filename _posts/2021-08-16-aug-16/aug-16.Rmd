@@ -1,0 +1,44 @@
+---
+title: "Two weeks as a MEDS student"
+description: |
+  A few functions I learned and key takeaways from my first two weeks in MEDS
+author:
+  - name: Felicia Cruz
+    url: {}
+date: 08-16-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(palmerpenguins)
+penguins <- penguins
+```
+
+Some functions I have found particularly useful are `group_by()` and `summarize()`. Working together, these two functions will recognize groups that are specified in the arguments and then compute chosen summary statistics represented in a new data frame. 
+
+Here is an example of how these functions can be used to find the mean flipper length for each penguin species in the `palmerpenguins` dataset. 
+
+```{r}
+flipper_length_by_species <- penguins %>%
+  group_by(species) %>% 
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE))
+
+flipper_length_by_species
+```
+Just by using these two functions, from the new data frame we can quickly see that Gentoos have the longest flipper length on average. 
+
+Beyond just learning useful functions, I have also deepened my understanding of tidy data. While I used to think that "tidy data" simply referred to datasets that were visually clean and organized, I have come to learn that tidy data refers to data that follows a certain structure. The three criteria that must be met for data to be considered "tidy" are: 
+
+- Each variable must be a column
+- Each observation must be a row
+- Each cell can contain only one value
+
+When data is in tidy form, this allows for easier visualizations and analyses. 
+
+Lastly, a key takeaway I have learned in my first two weeks as a data science student is that collaboration is critical. Whether collaboration means testing functions together or simply spotting an unmatched parentheses, I have really enjoyed the teammwork aspect that comes along with working in this field.   
+
