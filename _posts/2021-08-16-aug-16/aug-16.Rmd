@@ -24,7 +24,7 @@ Some functions I have found particularly useful are `group_by()` and `summarize(
 
 Here is an example of how these functions can be used to find the mean flipper length for each penguin species in the `palmerpenguins` dataset. 
 
-```{r}
+```{r, echo = TRUE}
 flipper_length_by_species <- penguins %>%
   group_by(species) %>% 
   summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE))

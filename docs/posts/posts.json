@@ -11,9 +11,9 @@
     ],
     "date": "2021-08-16",
     "categories": [],
-    "contents": "\nSome functions I have found particularly useful are group_by() and summarize(). Working together, these two functions will recognize groups that are specified in the arguments and then compute chosen summary statistics represented in a new data frame.\nHere is an example of how these functions can be used to find the mean flipper length for each penguin species in the palmerpenguins dataset.\n\n# A tibble: 3 × 2\n  species   mean_flipper_length\n  <fct>                   <dbl>\n1 Adelie                   190.\n2 Chinstrap                196.\n3 Gentoo                   217.\n\nJust by using these two functions, from the new data frame we can quickly see that Gentoos have the longest flipper length on average.\nBeyond just learning useful functions, I have also deepened my understanding of tidy data. While I used to think that “tidy data” simply referred to datasets that were visually clean and organized, I have come to learn that tidy data refers to data that follows a certain structure. The three criteria that must be met for data to be considered “tidy” are:\nEach variable must be a column\nEach observation must be a row\nEach cell can contain only one value\nWhen data is in tidy form, this allows for easier visualizations and analyses.\nLastly, a key takeaway I have learned in my first two weeks as a data science student is that collaboration is critical. Whether collaboration means testing functions together or simply spotting an unmatched parentheses, I have really enjoyed the teammwork aspect that comes along with working in this field.\n\n\n\n",
+    "contents": "\nSome functions I have found particularly useful are group_by() and summarize(). Working together, these two functions will recognize groups that are specified in the arguments and then compute chosen summary statistics represented in a new data frame.\nHere is an example of how these functions can be used to find the mean flipper length for each penguin species in the palmerpenguins dataset.\n\n\nflipper_length_by_species <- penguins %>%\n  group_by(species) %>% \n  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE))\n\n\n\n\n# A tibble: 3 × 2\n  species   mean_flipper_length\n  <fct>                   <dbl>\n1 Adelie                   190.\n2 Chinstrap                196.\n3 Gentoo                   217.\n\nJust by using these two functions, from the new data frame we can quickly see that Gentoos have the longest flipper length on average.\nBeyond just learning useful functions, I have also deepened my understanding of tidy data. While I used to think that “tidy data” simply referred to datasets that were visually clean and organized, I have come to learn that tidy data refers to data that follows a certain structure. The three criteria that must be met for data to be considered “tidy” are:\nEach variable must be a column\nEach observation must be a row\nEach cell can contain only one value\nWhen data is in tidy form, this allows for easier visualizations and analyses.\nLastly, a key takeaway I have learned in my first two weeks as a data science student is that collaboration is critical. Whether collaboration means testing functions together or simply spotting an unmatched parentheses, I have really enjoyed the teammwork aspect that comes along with working in this field.\n\n\n\n",
     "preview": "posts/2021-08-16-aug-16/images/bren_outside.jpeg",
-    "last_modified": "2021-08-24T23:06:00+00:00",
+    "last_modified": "2021-08-25T14:17:10-07:00",
     "input_file": {}
   },
   {
@@ -30,7 +30,7 @@
     "categories": [],
     "contents": "\n\n\n\nThis scatterplot shows a positive correlation between penguin flipper length and body mass. While the Adelie and Chinstrap species are similar in size, the Gentoos weigh a lot more and have much longer flippers.\n\n\n\n",
     "preview": "posts/2021-08-10-a-function-i-learned/images/palmerpenguins.jpg",
-    "last_modified": "2021-08-24T23:06:00+00:00",
+    "last_modified": "2021-08-10T11:09:00-07:00",
     "input_file": {}
   }
 ]

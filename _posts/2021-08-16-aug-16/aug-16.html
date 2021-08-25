@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["aug-16_files/anchor-4.2.2/anchor.min.js","aug-16_files/bowser-1.9.3/bowser.min.js","aug-16_files/distill-2.2.21/template.v2.js","aug-16_files/header-attrs-2.9/header-attrs.js","aug-16_files/jquery-1.11.3/jquery.min.js","aug-16_files/popper-2.6.0/popper.min.js","aug-16_files/tippy-6.2.7/tippy-bundle.umd.min.js","aug-16_files/tippy-6.2.7/tippy-light-border.css","aug-16_files/tippy-6.2.7/tippy.css","aug-16_files/tippy-6.2.7/tippy.umd.min.js","aug-16_files/webcomponents-2.0.0/webcomponents.js","images/bren_logo.png","images/bren_outside.jpeg"]}
+  {"type":"character","attributes":{},"value":["aug-16_files/anchor-4.2.2/anchor.min.js","aug-16_files/bowser-1.9.3/bowser.min.js","aug-16_files/distill-2.2.21/template.v2.js","aug-16_files/header-attrs-2.10/header-attrs.js","aug-16_files/header-attrs-2.9/header-attrs.js","aug-16_files/jquery-1.11.3/jquery.min.js","aug-16_files/popper-2.6.0/popper.min.js","aug-16_files/tippy-6.2.7/tippy-bundle.umd.min.js","aug-16_files/tippy-6.2.7/tippy-light-border.css","aug-16_files/tippy-6.2.7/tippy.css","aug-16_files/tippy-6.2.7/tippy.umd.min.js","aug-16_files/webcomponents-2.0.0/webcomponents.js","images/bren_logo.png","images/bren_outside.jpeg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1434,7 +1434,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="aug-16_files/header-attrs-2.9/header-attrs.js"></script>
+  <script src="aug-16_files/header-attrs-2.10/header-attrs.js"></script>
   <script src="aug-16_files/jquery-1.11.3/jquery.min.js"></script>
   <script src="aug-16_files/popper-2.6.0/popper.min.js"></script>
   <link href="aug-16_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1480,6 +1480,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <p>Some functions I have found particularly useful are <code>group_by()</code> and <code>summarize()</code>. Working together, these two functions will recognize groups that are specified in the arguments and then compute chosen summary statistics represented in a new data frame.</p>
 <p>Here is an example of how these functions can be used to find the mean flipper length for each penguin species in the <code>palmerpenguins</code> dataset.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flipper_length_by_species</span> <span class='op'>&lt;-</span> <span class='va'>penguins</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>species</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>summarize</span><span class='op'>(</span>mean_flipper_length <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>flipper_length_mm</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <pre><code># A tibble: 3 × 2
   species   mean_flipper_length
