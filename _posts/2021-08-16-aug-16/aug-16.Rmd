@@ -29,8 +29,12 @@ flipper_length_by_species <- penguins %>%
   group_by(species) %>% 
   summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE))
 
+```
+```{r}
 flipper_length_by_species
 ```
+
+
 Just by using these two functions, from the new data frame we can quickly see that Gentoos have the longest flipper length on average. 
 
 Beyond just learning useful functions, I have also deepened my understanding of tidy data. While I used to think that "tidy data" simply referred to datasets that were visually clean and organized, I have come to learn that tidy data refers to data that follows a certain structure. The three criteria that must be met for data to be considered "tidy" are: 
