@@ -14,7 +14,6 @@ output:
   postcards::trestles
 site: distill::distill_website
 ---
-This is a test. 
 
 I recently graduated with my Bachelor’s degree in Environmental Studies and Economics from UC Santa Barbara. Growing up in the Mojave Desert, I was faced with wildfire evacuations at a very young age. This, in addition to experiencing the impacts of the Thomas Fire and Montecito mudslides on Santa Barbara during my freshman year at UCSB led to my interest in extreme weather events. I am particularly interested in how these events are amplified by climate change and how they impact surrounding communities. 
 
