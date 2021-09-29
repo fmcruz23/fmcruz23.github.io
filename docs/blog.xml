@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>My Website</title>
+    <link>https://fmcruz23.github.io/</link>
+    <atom:link href="https://fmcruz23.github.io/blog.xml" rel="self" type="application/rss+xml"/>
+    <description>My Website
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Two weeks as a MEDS student</title>
+      <dc:creator>Felicia Cruz</dc:creator>
+      <link>https://fmcruz23.github.io/posts/2021-08-16-aug-16</link>
+      <description>A few functions I learned and key takeaways from my first two weeks in MEDS</description>
+      <guid>https://fmcruz23.github.io/posts/2021-08-16-aug-16</guid>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fmcruz23.github.io/posts/2021-08-16-aug-16/images/bren_outside.jpeg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Working with ggplot</title>
+      <dc:creator>Felicia Cruz</dc:creator>
+      <link>https://fmcruz23.github.io/posts/2021-08-10-a-function-i-learned</link>
+      <description>using ggplot with the palmerpenguins package</description>
+      <guid>https://fmcruz23.github.io/posts/2021-08-10-a-function-i-learned</guid>
+      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fmcruz23.github.io/posts/2021-08-10-a-function-i-learned/images/palmerpenguins.jpg" medium="image" type="image/jpeg"/>
+    </item>
+  </channel>
+</rss>
