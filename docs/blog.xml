@@ -7,12 +7,24 @@
     <description>My Website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Using an API to Programmatically Access and Download Data</title>
+      <dc:creator>Felicia Cruz</dc:creator>
+      <link>https://fmcruz23.github.io/posts/2021-10-20-data-retrieval</link>
+      <description>Using the `dataRetrieval` package to analyze USGS datasets</description>
+      <category>packages</category>
+      <guid>https://fmcruz23.github.io/posts/2021-10-20-data-retrieval</guid>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fmcruz23.github.io/posts/2021-10-20-data-retrieval/images/dataretrieval_hex.png.crdownload" medium="image" type="application/octet-stream"/>
+    </item>
     <item>
       <title>Two weeks as a MEDS student</title>
       <dc:creator>Felicia Cruz</dc:creator>
       <link>https://fmcruz23.github.io/posts/2021-08-16-aug-16</link>
       <description>A few functions I learned and key takeaways from my first two weeks in MEDS</description>
+      <category>packages</category>
+      <category>MEDS</category>
       <guid>https://fmcruz23.github.io/posts/2021-08-16-aug-16</guid>
       <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fmcruz23.github.io/posts/2021-08-16-aug-16/images/bren_outside.jpeg" medium="image" type="image/jpeg"/>

@@ -1,0 +1,46 @@
+---
+title: "Using an API to Programmatically Access and Download Data"
+categories:
+  - packages
+  - MEDS
+description: |
+  Using the `dataRetrieval` package to analyze USGS datasets
+author:
+  - name: Felicia Cruz
+    url: {}
+date: 10-20-2021
+output:
+  distill::distill_article:
+    self_contained: false
+preview: images/dataretrieval_hex.png.crdownload
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Maybe look at the storms that caused the Montecito mudslides in 2018?? 
+
+During my EDS 213 course titled "Metadata Standards, Data Modeling and Data Semantics" I learned how to use an API to access and download data in R. Using the `dataRetrieval` package to access USGS data, I will be looking at the Ventura River and Santa Paula Creek gauges on October 4th.
+
+One of my favorite parts of Santa Barbara is the beautiful weather.
+
+On the night of October 4th as I was driving home from an evening workout on campus, 
+
+```{r, include = FALSE}
+library(dataRetrieval)
+library(tidyverse)
+library(metajam)
+library(here)
+```
+
+## Reading in the data 
+```{r}
+
+
+
+
+```
+
+## Analysis 

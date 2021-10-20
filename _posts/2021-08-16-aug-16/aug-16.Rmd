@@ -1,5 +1,8 @@
 ---
 title: "Two weeks as a MEDS student"
+categories:
+  - packages
+  - MEDS
 description: |
   A few functions I learned and key takeaways from my first two weeks in MEDS
 author:

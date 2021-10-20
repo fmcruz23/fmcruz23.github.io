@@ -1,6 +1,6 @@
 ---
 title: "Felicia Cruz"
-image: "norway_headshot_crop.jpg"
+image: "norway_headshot.jpg"
 links:
   - label: '<i class="fab fa-linkedin"></i> LinkedIn'
     url: "https://www.linkedin.com/in/cruz-felicia/"
