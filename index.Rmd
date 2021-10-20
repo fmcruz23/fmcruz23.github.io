@@ -1,14 +1,14 @@
 ---
 title: "Felicia Cruz"
-image: "sands.jpg"
+image: "norway_headshot_crop.jpg"
 links:
-  - label: LinkedIn
+  - label: '<i class="fab fa-linkedin"></i> LinkedIn'
     url: "https://www.linkedin.com/in/cruz-felicia/"
-  - label: Twitter
+  - label: '<i class="fab fa-twitter"></i> Twitter'
     url: "https://twitter.com/"
-  - label: GitHub
+  - label: '<i class="fab fa-github"></i> GitHub'
     url: "https://github.com/fmcruz23"
-  - label: Email
+  - label: '<i class="fa fa-envelope" aria-hidden="true"></i> Email'
     url: "fmcruz23@gmail.com"
 output:
   postcards::trestles

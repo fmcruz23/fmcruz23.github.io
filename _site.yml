@@ -1,5 +1,5 @@
 name: "fmcruz23.github.io"
-title: "My Website"
+title: "Felicia Cruz"
 description: |
   My Website
 base_url: https://fmcruz23.github.io/
@@ -10,8 +10,8 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
-    - text: "My CV"
-      href: cv.html
+    - text: "Resume"
+      href: Resume_10_11_2021.pdf
     - text: "My Blog"
       href: blog.html
   source_url: https://github.com/fmcruz23/fmcruz23.github.io

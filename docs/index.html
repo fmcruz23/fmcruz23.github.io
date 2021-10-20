@@ -722,7 +722,9 @@
           /* This must remain at the top of this file.                 */
 
           @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-          @import url('https://fonts.googleapis.com/css2?family=Caveat');
+          @import url('https://fonts.googleapis.com/css2?family=Montserrat');
+          @import url('https://fonts.googleapis.com/css2?family=Monosphere');
+          @import url('https://fonts.googleapis.com/css2?family=Quicksand');
 
           html {
             /*-- Main font sizes --*/
@@ -740,7 +742,7 @@
             /*-- Specify custom fonts ~~~ must be imported above   --*/
             --heading-font:    Rubik;
             --mono-font:       monospace;
-            --body-font:       Caveat;
+            --body-font:       Rubik;
             --navbar-font:     Rubik;  /* websites + blogs only */
           }
 
@@ -786,7 +788,18 @@
 
           /*-- Additional custom styles --*/
           /* Add any additional CSS rules below                      */
-          </style>
+
+          /* body color */
+
+          body {
+            background-color: #ededed;
+          }
+
+          /* -- header letter spacing, font weight, color -- */
+          h1, h2, h3, h4, h5, h6 {
+            letter-spacing: 3px;
+            font-weight: 300;
+          }</style>
           <style type="text/css">
           /* base style */
 
@@ -951,13 +964,13 @@
           <header class="header header--fixed" role="banner">
           <nav class="distill-site-nav distill-site-header">
           <div class="nav-left">
-          <a href="index.html" class="title">My Website</a>
+          <a href="index.html" class="title">Felicia Cruz</a>
           <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
           </div>
           <div class="nav-right">
           <a href="index.html">Index</a>
           <a href="about.html">About</a>
-          <a href="cv.html">My CV</a>
+          <a href="Resume_10_11_2021.pdf">Resume</a>
           <a href="blog.html">My Blog</a>
           <a href="https://github.com/fmcruz23/fmcruz23.github.io" aria-label="Link to source">
           <i class="fab fa-github" aria-hidden="true"></i>
@@ -975,7 +988,7 @@
         <div class="d-flex flex-column col-5 align-items-center text-center align-self-center">
           <div class="mx-auto text-center">
             <div class="p-3">
-              <img src=sands.jpg style="height:15rem" class="rounded">
+              <img src=norway_headshot_crop.jpg style="height:15rem" class="rounded">
             </div>
             <div class="p-2">
               <h1>Felicia Cruz</h1>
@@ -987,28 +1000,28 @@
                                     <li class="list-inline-item">
                     <a href=https://www.linkedin.com/in/cruz-felicia/>
                       <button type="button" class="btn btn-outline-dark mb-2">
-                        LinkedIn
+                        <i class="fab fa-linkedin"></i> LinkedIn
                       </button>
                     </a>
                   </li>
                                     <li class="list-inline-item">
                     <a href=https://twitter.com/>
                       <button type="button" class="btn btn-outline-dark mb-2">
-                        Twitter
+                        <i class="fab fa-twitter"></i> Twitter
                       </button>
                     </a>
                   </li>
                                     <li class="list-inline-item">
                     <a href=https://github.com/fmcruz23>
                       <button type="button" class="btn btn-outline-dark mb-2">
-                        GitHub
+                        <i class="fab fa-github"></i> GitHub
                       </button>
                     </a>
                   </li>
                                     <li class="list-inline-item">
                     <a href=fmcruz23@gmail.com>
                       <button type="button" class="btn btn-outline-dark mb-2">
-                        Email
+                        <i class="fa fa-envelope" aria-hidden="true"></i> Email
                       </button>
                     </a>
                   </li>
@@ -1033,7 +1046,7 @@
         <div class="d-flex flex-col">
           <div class="mx-auto">
             <div class="p-3 mt-3 text-center">
-              <img src=sands.jpg style="height:15rem" class="rounded">
+              <img src=norway_headshot_crop.jpg style="height:15rem" class="rounded">
             </div>
             <div class="p-2 text-center">
               <h1>Felicia Cruz</h1>
@@ -1045,22 +1058,22 @@
                 <div class="list-group">
                                     <a href=https://www.linkedin.com/in/cruz-felicia/>
                     <button type="button" class="list-group-item list-group-item-action my-1 rounded">
-                      LinkedIn
+                      <i class="fab fa-linkedin"></i> LinkedIn
                     </button>
                   </a>
                                     <a href=https://twitter.com/>
                     <button type="button" class="list-group-item list-group-item-action my-1 rounded">
-                      Twitter
+                      <i class="fab fa-twitter"></i> Twitter
                     </button>
                   </a>
                                     <a href=https://github.com/fmcruz23>
                     <button type="button" class="list-group-item list-group-item-action my-1 rounded">
-                      GitHub
+                      <i class="fab fa-github"></i> GitHub
                     </button>
                   </a>
                                     <a href=fmcruz23@gmail.com>
                     <button type="button" class="list-group-item list-group-item-action my-1 rounded">
-                      Email
+                      <i class="fa fa-envelope" aria-hidden="true"></i> Email
                     </button>
                   </a>
                                   </div>
