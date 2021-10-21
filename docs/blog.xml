@@ -14,6 +14,7 @@
       <link>https://fmcruz23.github.io/posts/2021-10-20-data-retrieval</link>
       <description>Using the `dataRetrieval` package to analyze USGS datasets</description>
       <category>packages</category>
+      <category>MEDS</category>
       <guid>https://fmcruz23.github.io/posts/2021-10-20-data-retrieval</guid>
       <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fmcruz23.github.io/posts/2021-10-20-data-retrieval/images/dataretrieval_hex.png.crdownload" medium="image" type="application/octet-stream"/>

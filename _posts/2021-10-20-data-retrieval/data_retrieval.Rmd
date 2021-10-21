@@ -24,21 +24,68 @@ Maybe look at the storms that caused the Montecito mudslides in 2018??
 
 During my EDS 213 course titled "Metadata Standards, Data Modeling and Data Semantics" I learned how to use an API to access and download data in R. Using the `dataRetrieval` package to access USGS data, I will be looking at the Ventura River and Santa Paula Creek gauges on October 4th.
 
-One of my favorite parts of Santa Barbara is the beautiful weather.
-
-On the night of October 4th as I was driving home from an evening workout on campus, 
 
 ```{r, include = FALSE}
 library(dataRetrieval)
 library(tidyverse)
-library(metajam)
 library(here)
 ```
 
 ## Reading in the data 
 ```{r}
+# Query both sites at once by passing in a vector for the siteNumber argument  
+# Ventura is 1111850
+# Santa Paula is 1111350
+
+combined_october <- readNWISdv(siteNumber = c("11118500", "11113500"),
+                       parameterCd = "00060",
+                       startDate = "2018-01-01",
+                       endDate = "2018-01-31")
+
+# rename the discharge column and drop the unnecessary variables 
+
+combined_october$discharge <- combined_october$X_00060_00003
+combined_october <- combined_october %>% 
+  select(site_no, Date, discharge) %>% 
+  mutate(site_no = case_when(site_no == "11118500" ~ "Ventura",
+            TRUE ~ "Santa Paula"))
+```
 
 
+```{r}
+# make a time series plot with both sites 
+
+ggplot(data = combined_october, aes(x = Date, y = discharge)) +
+  geom_line(aes(color = site_no)) +
+  labs(title = "Water Discharge, Santa Paula and Ventura",
+       subtitle = "2021-10-01 - 2021-10-19",
+       color = "Site",
+       y = "Discharge (cubic ft/s)")
+```
+## Instantaneous Data for October 4
+```{r}
+# getting instantaneous data for Oct 4 to look at water discharge 
+
+combined_oct_4 <- readNWISuv(siteNumbers =  c("11118500", "11113500"),
+                       parameterCd = "00060",
+                       startDate = "2021-10-04",
+                       endDate = "2021-10-04",
+                       tz = "America/Los_Angeles")
+
+combined_oct_4$discharge <- combined_oct_4$X_00060_00000
+
+combined_oct_4 <- combined_oct_4 %>% 
+  select(site_no, dateTime, discharge) %>% 
+  mutate(site_no = case_when(site_no == "11118500" ~ "Ventura",
+            TRUE ~ "Santa Paula"))
+
+ggplot(combined_oct_4, aes(x = dateTime, y = discharge)) +
+  geom_line(aes(color = site_no)) +
+  labs(y = "Discharge (cubic ft/s)",
+       color = "Site",
+       title = "Water Discharge",
+       subtitle = "2021-10-04",
+       x = "Time") 
 
 
 ```
