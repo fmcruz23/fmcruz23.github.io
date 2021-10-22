@@ -16,7 +16,7 @@
     ],
     "contents": "\nMaybe look at the storms that caused the Montecito mudslides in 2018??\nDuring my EDS 213 course titled “Metadata Standards, Data Modeling and Data Semantics” I learned how to use an API to access and download data in R. Using the dataRetrieval package to access USGS data, I will be looking at the Ventura River and Santa Paula Creek gauges on October 4th.\nReading in the data\n\n\n\n\n\n\nInstantaneous Data for October 4\n\n\n\nAnalysis\n\n\n\n",
     "preview": "posts/2021-10-20-data-retrieval/images/dataretrieval_hex.png.crdownload",
-    "last_modified": "2021-10-21T23:49:30-07:00",
+    "last_modified": "2021-10-21T23:53:24-07:00",
     "input_file": {}
   },
   {

@@ -20,6 +20,7 @@ preview: images/dataretrieval_hex.png.crdownload
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+
 Maybe look at the storms that caused the Montecito mudslides in 2018?? 
 
 During my EDS 213 course titled "Metadata Standards, Data Modeling and Data Semantics" I learned how to use an API to access and download data in R. Using the `dataRetrieval` package to access USGS data, I will be looking at the Ventura River and Santa Paula Creek gauges on October 4th.
