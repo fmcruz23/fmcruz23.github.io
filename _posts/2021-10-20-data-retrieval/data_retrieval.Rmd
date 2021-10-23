@@ -11,20 +11,22 @@ author:
 date: 10-20-2021
 output:
   distill::distill_article:
+    code_folding: true
     self_contained: false
+    toc: true 
+    toc_flot: true
 preview: images/dataretrieval_hex.png.crdownload
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+Maybe look at the storms that caused the Montecito mudslides in 2018??
 
-Maybe look at the storms that caused the Montecito mudslides in 2018?? 
+During my EDS 213 course titled "Metadata Standards, Data Modeling and Data Semantics" I learned how to use an API to programmatically retrieve data.
 
-During my EDS 213 course titled "Metadata Standards, Data Modeling and Data Semantics" I learned how to use an API to access and download data in R. Using the `dataRetrieval` package to access USGS data, I will be looking at the Ventura River and Santa Paula Creek gauges on October 4th.
-
+Using the `dataRetrieval` package to access USGS data water gauge data, I will be looking at the Ventura River and Santa Paula Creek gauges.
 
 ```{r, include = FALSE}
 library(dataRetrieval)
@@ -32,63 +34,73 @@ library(tidyverse)
 library(here)
 ```
 
-## Reading in the data 
+## Time Series for 2021
 ```{r}
 # Query both sites at once by passing in a vector for the siteNumber argument  
 # Ventura is 1111850
 # Santa Paula is 1111350
 
-combined_october <- readNWISdv(siteNumber = c("11118500", "11113500"),
+combined <- readNWISdv(siteNumber = c("11118500", "11113500"),
                        parameterCd = "00060",
-                       startDate = "2018-01-01",
-                       endDate = "2018-01-31")
+                       startDate = "2021-01-01",
+                       endDate = "2021-10-21")
 
 # rename the discharge column and drop the unnecessary variables 
 
-combined_october$discharge <- combined_october$X_00060_00003
-combined_october <- combined_october %>% 
+combined$discharge <- combined$X_00060_00003
+combined <- combined %>% 
   select(site_no, Date, discharge) %>% 
   mutate(site_no = case_when(site_no == "11118500" ~ "Ventura",
             TRUE ~ "Santa Paula"))
 ```
 
+One of my favorite things about living in Santa Barbara is the beautiful weather. With sunny skies and warm temperatures most days, I have become quite sensitive to even small drops in temperature or brief rain episodes.  In 2021, we have experienced very little rain thus far. From the plot below, we can see that the highest level of water discharge was for either site was less than 15 cubic feet per second. Besides this spike, levels were consistently under 5 cubic feet per second.
 
 ```{r}
 # make a time series plot with both sites 
 
-ggplot(data = combined_october, aes(x = Date, y = discharge)) +
+# subset for just 2021 
+
+ggplot(data = combined, aes(x = Date, y = discharge)) +
   geom_line(aes(color = site_no)) +
+  ylim(0, 15) +
   labs(title = "Water Discharge, Santa Paula and Ventura",
-       subtitle = "2021-10-01 - 2021-10-19",
+       subtitle = "2021-01-01 - 2021-10-21",
        color = "Site",
        y = "Discharge (cubic ft/s)")
 ```
-## Instantaneous Data for October 4
-```{r}
-# getting instantaneous data for Oct 4 to look at water discharge 
 
-combined_oct_4 <- readNWISuv(siteNumbers =  c("11118500", "11113500"),
+
+## Montecito Mudslides: January 9, 2018 
+
+The Thomas Fire in December of 2018 ended my first quarter of college early and postponed my first finals week. Once the fire was contained after the holidays, I thought I would be returning to a somewhat normal college experience...until the Montecito Mudslides happened. After a quick weekend trip home in January, the 101 closure due to these mudslides meant in order to get back to school I needed to take a short boat trip from Ventura Harbor to Santa Barbara. 
+
+Just as the Thomas Fire was nearing complete containment, heavy rainfall on January 9 washed away massive amounts of mud and debris loosened from the areas burned by the fire. These mudslides sadly resulted in 23 deaths and the destruction of around 100 residences. 
+
+By using the `readNWISuv` function, I can read in the water discharge data from the USGS for January 9, 2018 to see when rainfall was most intense. 
+
+```{r}
+# getting instantaneous data for January 9 to look at water discharge 
+
+combined_jan_9_18 <- readNWISuv(siteNumbers =  c("11118500", "11113500"),
                        parameterCd = "00060",
-                       startDate = "2021-10-04",
-                       endDate = "2021-10-04",
+                       startDate = "2018-01-09",
+                       endDate = "2018-01-09",
                        tz = "America/Los_Angeles")
 
-combined_oct_4$discharge <- combined_oct_4$X_00060_00000
+combined_jan_9_18$discharge <- combined_jan_9_18$X_00060_00000
 
-combined_oct_4 <- combined_oct_4 %>% 
+combined_jan_9_18 <- combined_jan_9_18 %>% 
   select(site_no, dateTime, discharge) %>% 
   mutate(site_no = case_when(site_no == "11118500" ~ "Ventura",
             TRUE ~ "Santa Paula"))
 
-ggplot(combined_oct_4, aes(x = dateTime, y = discharge)) +
+ggplot(combined_jan_9_18, aes(x = dateTime, y = discharge)) +
   geom_line(aes(color = site_no)) +
   labs(y = "Discharge (cubic ft/s)",
        color = "Site",
        title = "Water Discharge",
-       subtitle = "2021-10-04",
+       subtitle = "2018-01-09",
        x = "Time") 
-
-
 ```
-
-## Analysis 
+From the above plot, we can see that water discharge peaked at around 6000 cubic feet per second at about 7 am. Compared to the maximum discharge in 2021 so far of 15 cubic feet per second. This goes to show the intensity of the rainfall that triggered the Montecito Mudslides. In a place of such low rainfall like Santa Barbara County, it is unlikely that such a massive rain event would occur and bring with it such devastating consequences, but the burn scars left by the Thomas Fire made these mudslides practically inevitable. 

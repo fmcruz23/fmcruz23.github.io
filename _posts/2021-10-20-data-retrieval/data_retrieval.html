@@ -111,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","categories","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["Using an API to Programmatically Access and Download Data"]},{"type":"character","attributes":{},"value":["packages","MEDS"]},{"type":"character","attributes":{},"value":["Using the `dataRetrieval` package to analyze USGS datasets\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Felicia Cruz"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["10-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["images/dataretrieval_hex.png.crdownload"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","categories","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["Using an API to Programmatically Access and Download Data"]},{"type":"character","attributes":{},"value":["packages","MEDS"]},{"type":"character","attributes":{},"value":["Using the `dataRetrieval` package to analyze USGS datasets\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Felicia Cruz"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["10-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","self_contained","toc","toc_flot"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["images/dataretrieval_hex.png.crdownload"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1482,20 +1482,106 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<p>Maybe look at the storms that caused the Montecito mudslides in 2018??</p>
-<p>During my EDS 213 course titled “Metadata Standards, Data Modeling and Data Semantics” I learned how to use an API to access and download data in R. Using the <code>dataRetrieval</code> package to access USGS data, I will be looking at the Ventura River and Santa Paula Creek gauges on October 4th.</p>
-<h2 id="reading-in-the-data">Reading in the data</h2>
-<div class="layout-chunk" data-layout="l-body">
-
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#time-series-for-2021">Time Series for 2021</a></li>
+<li><a href="#montecito-mudslides-january-9-2018">Montecito Mudslides: January 9, 2018</a></li>
+</ul>
+</nav>
 </div>
+<p>Maybe look at the storms that caused the Montecito mudslides in 2018??</p>
+<p>During my EDS 213 course titled “Metadata Standards, Data Modeling and Data Semantics” I learned how to use an API to programmatically retrieve data.</p>
+<p>Using the <code>dataRetrieval</code> package to access USGS data water gauge data, I will be looking at the Ventura River and Santa Paula Creek gauges.</p>
+<h2 id="time-series-for-2021">Time Series for 2021</h2>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Query both sites at once by passing in a vector for the siteNumber argument  </span>
+<span class='co'># Ventura is 1111850</span>
+<span class='co'># Santa Paula is 1111350</span>
+
+<span class='va'>combined</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dataRetrieval/man/readNWISdv.html'>readNWISdv</a></span><span class='op'>(</span>siteNumber <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"11118500"</span>, <span class='st'>"11113500"</span><span class='op'>)</span>,
+                       parameterCd <span class='op'>=</span> <span class='st'>"00060"</span>,
+                       startDate <span class='op'>=</span> <span class='st'>"2021-01-01"</span>,
+                       endDate <span class='op'>=</span> <span class='st'>"2021-10-21"</span><span class='op'>)</span>
+
+<span class='co'># rename the discharge column and drop the unnecessary variables </span>
+
+<span class='va'>combined</span><span class='op'>$</span><span class='va'>discharge</span> <span class='op'>&lt;-</span> <span class='va'>combined</span><span class='op'>$</span><span class='va'>X_00060_00003</span>
+<span class='va'>combined</span> <span class='op'>&lt;-</span> <span class='va'>combined</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>site_no</span>, <span class='va'>Date</span>, <span class='va'>discharge</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>site_no <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span><span class='va'>site_no</span> <span class='op'>==</span> <span class='st'>"11118500"</span> <span class='op'>~</span> <span class='st'>"Ventura"</span>,
+            <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"Santa Paula"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<p>One of my favorite things about living in Santa Barbara is the beautiful weather. With sunny skies and warm temperatures most days, I have become quite sensitive to even small drops in temperature or brief rain episodes. In 2021, we have experienced very little rain thus far. From the plot below, we can see that the highest level of water discharge was for either site was less than 15 cubic feet per second. Besides this spike, levels were consistently under 5 cubic feet per second.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># make a time series plot with both sites </span>
+
+<span class='co'># subset for just 2021 </span>
+
+<span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>combined</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>discharge</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>site_no</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>ylim</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>15</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Water Discharge, Santa Paula and Ventura"</span>,
+       subtitle <span class='op'>=</span> <span class='st'>"2021-01-01 - 2021-10-21"</span>,
+       color <span class='op'>=</span> <span class='st'>"Site"</span>,
+       y <span class='op'>=</span> <span class='st'>"Discharge (cubic ft/s)"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="data_retrieval_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
-<h2 id="instantaneous-data-for-october-4">Instantaneous Data for October 4</h2>
+<h2 id="montecito-mudslides-january-9-2018">Montecito Mudslides: January 9, 2018</h2>
+<p>The Thomas Fire in December of 2018 ended my first quarter of college early and postponed my first finals week. Once the fire was contained after the holidays, I thought I would be returning to a somewhat normal college experience…until the Montecito Mudslides happened. After a quick weekend trip home in January, the 101 closure due to these mudslides meant in order to get back to school I needed to take a short boat trip from Ventura Harbor to Santa Barbara.</p>
+<p>Just as the Thomas Fire was nearing complete containment, heavy rainfall on January 9 washed away massive amounts of mud and debris loosened from the areas burned by the fire. These mudslides sadly resulted in 23 deaths and the destruction of around 100 residences.</p>
+<p>By using the <code>readNWISuv</code> function, I can read in the water discharge data from the USGS for January 9, 2018 to see when rainfall was most intense.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># getting instantaneous data for January 9 to look at water discharge </span>
+
+<span class='va'>combined_jan_9_18</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dataRetrieval/man/readNWISuv.html'>readNWISuv</a></span><span class='op'>(</span>siteNumbers <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"11118500"</span>, <span class='st'>"11113500"</span><span class='op'>)</span>,
+                       parameterCd <span class='op'>=</span> <span class='st'>"00060"</span>,
+                       startDate <span class='op'>=</span> <span class='st'>"2018-01-09"</span>,
+                       endDate <span class='op'>=</span> <span class='st'>"2018-01-09"</span>,
+                       tz <span class='op'>=</span> <span class='st'>"America/Los_Angeles"</span><span class='op'>)</span>
+
+<span class='va'>combined_jan_9_18</span><span class='op'>$</span><span class='va'>discharge</span> <span class='op'>&lt;-</span> <span class='va'>combined_jan_9_18</span><span class='op'>$</span><span class='va'>X_00060_00000</span>
+
+<span class='va'>combined_jan_9_18</span> <span class='op'>&lt;-</span> <span class='va'>combined_jan_9_18</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>site_no</span>, <span class='va'>dateTime</span>, <span class='va'>discharge</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>site_no <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span><span class='va'>site_no</span> <span class='op'>==</span> <span class='st'>"11118500"</span> <span class='op'>~</span> <span class='st'>"Ventura"</span>,
+            <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"Santa Paula"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>combined_jan_9_18</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dateTime</span>, y <span class='op'>=</span> <span class='va'>discharge</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>site_no</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>y <span class='op'>=</span> <span class='st'>"Discharge (cubic ft/s)"</span>,
+       color <span class='op'>=</span> <span class='st'>"Site"</span>,
+       title <span class='op'>=</span> <span class='st'>"Water Discharge"</span>,
+       subtitle <span class='op'>=</span> <span class='st'>"2018-01-09"</span>,
+       x <span class='op'>=</span> <span class='st'>"Time"</span><span class='op'>)</span> 
+</code></pre>
+</div>
+</details>
 <p><img src="data_retrieval_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
-<h2 id="analysis">Analysis</h2>
+<p>From the above plot, we can see that water discharge peaked at around 6000 cubic feet per second at about 7 am. Compared to the maximum discharge in 2021 so far of 15 cubic feet per second. This goes to show the intensity of the rainfall that triggered the Montecito Mudslides. In a place of such low rainfall like Santa Barbara County, it is unlikely that such a massive rain event would occur and bring with it such devastating consequences, but the burn scars left by the Thomas Fire made these mudslides practically inevitable.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
