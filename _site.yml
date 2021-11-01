@@ -6,8 +6,10 @@ base_url: https://fmcruz23.github.io/
 output_dir: "docs"
 navbar:
   right:
-    - text: "About"
+    - text: "Home"
       href: index.html
+    - text: "About"
+      href: my_bio.html  
     - text: "Resume"
       href: Resume_10_11_2021.pdf
     - text: "My Blog"

@@ -1,0 +1,13 @@
+---
+title: "About Me"
+description: |
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+Before moving to Goleta to attend the University of California, Santa Barbara, I lived in the Antelope Valley for 11 years. Growing up in this area at the northern edge of LA county in the Mojave Desert, I was faced with wildfire evacuations at a very young age. This, in addition to experiencing the impacts of the Thomas Fire and Montecito mudslides on Santa Barbara during my freshman year at UCSB led to my interest in extreme weather events. I am particularly interested in how these events are amplified by climate change and how they impact surrounding communities. 
+
+During my senior year, I worked as a research analyst for UCSB’s Economic Forecast Project. As part of the community indicators team, I utilized R to analyze and visualize data pertaining to things like air quality, energy consumption, and water quality. Combining graphics and written explanations, a large part of my job was making research conclusions digestible for the greater Santa Barbara community. This experience gave me a first taste of how valuable technical tools in conjunction with communication methods can be when faced with environmental issues. 
+
+At Bren, I am excited to further hone my technical and interpersonal skills, preparing me to apply data science in the environmental industry to spark policy change in favor of disadvantaged communities and populations.

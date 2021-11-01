@@ -22,8 +22,6 @@ preview: images/dataretrieval_hex.png.crdownload
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Maybe look at the storms that caused the Montecito mudslides in 2018??
-
 During my EDS 213 course titled "Metadata Standards, Data Modeling and Data Semantics" I learned how to use an API to programmatically retrieve data.
 
 Using the `dataRetrieval` package to access USGS data water gauge data, I will be looking at the Ventura River and Santa Paula Creek gauges.
@@ -54,7 +52,7 @@ combined <- combined %>%
             TRUE ~ "Santa Paula"))
 ```
 
-One of my favorite things about living in Santa Barbara is the beautiful weather. With sunny skies and warm temperatures most days, I have become quite sensitive to even small drops in temperature or brief rain episodes.  In 2021, we have experienced very little rain thus far. From the plot below, we can see that the highest level of water discharge was for either site was less than 15 cubic feet per second. Besides this spike, levels were consistently under 5 cubic feet per second.
+One of my favorite things about living in Santa Barbara is the beautiful weather. With sunny skies and warm temperatures most days, I have become quite sensitive to even small drops in temperature or brief rain episodes.  In 2021, we have experienced very little rain thus far. From the plot below, we can see that the highest level of water discharge for either site was less than 15 cubic feet per second. Besides this spike, levels were consistently under 5 cubic feet per second.
 
 ```{r}
 # make a time series plot with both sites 
@@ -103,4 +101,4 @@ ggplot(combined_jan_9_18, aes(x = dateTime, y = discharge)) +
        subtitle = "2018-01-09",
        x = "Time") 
 ```
-From the above plot, we can see that water discharge peaked at around 6000 cubic feet per second at about 7 am. Compared to the maximum discharge in 2021 so far of 15 cubic feet per second. This goes to show the intensity of the rainfall that triggered the Montecito Mudslides. In a place of such low rainfall like Santa Barbara County, it is unlikely that such a massive rain event would occur and bring with it such devastating consequences, but the burn scars left by the Thomas Fire made these mudslides practically inevitable. 
+From the above plot, we can see that water discharge peaked at around 6000 cubic feet per second at about 7 am. Compared to the maximum discharge in 2021 so far of 15 cubic feet per second, this highlights the intensity of the rainfall that triggered the Montecito Mudslides in January of 2018. In a place of such low rainfall like Santa Barbara County, it is unlikely that such a massive rain event would occur and bring with it such devastating consequences, but the burn scars left by the Thomas Fire made these mudslides practically inevitable. 
