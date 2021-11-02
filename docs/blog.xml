@@ -7,7 +7,7 @@
     <description>My Website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Nov 2021 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Using an API to Programmatically Access and Download Data</title>
       <dc:creator>Felicia Cruz</dc:creator>
@@ -16,7 +16,7 @@
       <category>packages</category>
       <category>MEDS</category>
       <guid>https://fmcruz23.github.io/posts/2021-10-20-data-retrieval</guid>
-      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fmcruz23.github.io/posts/2021-10-20-data-retrieval/images/dataretrieval_hex.png.crdownload" medium="image" type="application/octet-stream"/>
     </item>
     <item>
@@ -31,10 +31,11 @@
       <media:content url="https://fmcruz23.github.io/posts/2021-08-16-aug-16/images/bren_outside.jpeg" medium="image" type="image/jpeg"/>
     </item>
     <item>
-      <title>Working with ggplot</title>
+      <title>Working with `ggplot`</title>
       <dc:creator>Felicia Cruz</dc:creator>
       <link>https://fmcruz23.github.io/posts/2021-08-10-a-function-i-learned</link>
-      <description>using ggplot with the palmerpenguins package</description>
+      <description>Using `ggplot` with the `palmerpenguins` package</description>
+      <category>packages</category>
       <guid>https://fmcruz23.github.io/posts/2021-08-10-a-function-i-learned</guid>
       <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fmcruz23.github.io/posts/2021-08-10-a-function-i-learned/images/palmerpenguins.jpg" medium="image" type="image/jpeg"/>

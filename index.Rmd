@@ -14,7 +14,6 @@ output:
   postcards::trestles
 site: distill::distill_website
 ---
-
 ### Education 
 **Master of Environmental Data Science (expected June 2022)**
 
@@ -24,6 +23,11 @@ Bren School of Environmental Science & Management, UC Santa Barbara
 
 UC Santa Barbara 
 
+---------------------------------------------------------------------------------------------------
+### Environmental Interests 
 
+- Extreme weather events 
+- Renewable energy 
+- Environmental economics 
 
 

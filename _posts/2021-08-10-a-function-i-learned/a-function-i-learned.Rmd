@@ -1,13 +1,16 @@
 ---
-title: "ggplot"
+title: "Working with `ggplot`"
+categories:
+  - packages
 description: |
-  using ggplot with the palmerpenguins package 
+  Using `ggplot` with the `palmerpenguins` package 
 author:
   - name: Felicia Cruz
     url: {}
 date: 08-10-2021
 output:
   distill::distill_article:
+    code_folding: true
     self_contained: false
 preview: images/palmerpenguins.jpg
 ---

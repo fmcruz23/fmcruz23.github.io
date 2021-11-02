@@ -8,7 +8,7 @@ description: |
 author:
   - name: Felicia Cruz
     url: {}
-date: 10-20-2021
+date: 11-02-2021
 output:
   distill::distill_article:
     code_folding: true
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 During my EDS 213 course titled "Metadata Standards, Data Modeling and Data Semantics" I learned how to use an API to programmatically retrieve data.
 
-Using the `dataRetrieval` package to access USGS data water gauge data, I will be looking at the Ventura River and Santa Paula Creek gauges.
+Using the `dataRetrieval` package to access USGS water gauge data, I will be looking at the Ventura River and Santa Paula Creek gauges to explore rain events and patterns.
 
 ```{r, include = FALSE}
 library(dataRetrieval)
@@ -33,18 +33,19 @@ library(here)
 ```
 
 ## Time Series for 2021
+
 ```{r}
 # Query both sites at once by passing in a vector for the siteNumber argument  
 # Ventura is 1111850
 # Santa Paula is 1111350
 
+# subset for just 2021 
 combined <- readNWISdv(siteNumber = c("11118500", "11113500"),
                        parameterCd = "00060",
                        startDate = "2021-01-01",
-                       endDate = "2021-10-21")
+                       endDate = "2021-11-01") 
 
 # rename the discharge column and drop the unnecessary variables 
-
 combined$discharge <- combined$X_00060_00003
 combined <- combined %>% 
   select(site_no, Date, discharge) %>% 
@@ -52,30 +53,27 @@ combined <- combined %>%
             TRUE ~ "Santa Paula"))
 ```
 
-One of my favorite things about living in Santa Barbara is the beautiful weather. With sunny skies and warm temperatures most days, I have become quite sensitive to even small drops in temperature or brief rain episodes.  In 2021, we have experienced very little rain thus far. From the plot below, we can see that the highest level of water discharge for either site was less than 15 cubic feet per second. Besides this spike, levels were consistently under 5 cubic feet per second.
+One of my favorite things about living in the Santa Barbara area is the beautiful weather. With sunny skies and warm temperatures most days, I have become quite sensitive to even small drops in temperature or brief rain episodes. In 2021, we have experienced very little rain thus far. From the plot below, we can see that the highest level of water discharge for either site was less than 15 cubic feet per second. Besides this spike, levels were consistently under 5 cubic feet per second.
 
 ```{r}
 # make a time series plot with both sites 
-
-# subset for just 2021 
 
 ggplot(data = combined, aes(x = Date, y = discharge)) +
   geom_line(aes(color = site_no)) +
   ylim(0, 15) +
   labs(title = "Water Discharge, Santa Paula and Ventura",
-       subtitle = "2021-01-01 - 2021-10-21",
+       subtitle = "2021-01-01 - 2021-11-01",
        color = "Site",
        y = "Discharge (cubic ft/s)")
 ```
 
+## Montecito Mudslides: January 9, 2018
 
-## Montecito Mudslides: January 9, 2018 
+The Thomas Fire in December of 2018 ended my first quarter of college early and postponed my first finals week. Once the fire was contained after the holidays, I thought I would be returning to a somewhat normal college experience...until the Montecito Mudslides happened.
 
-The Thomas Fire in December of 2018 ended my first quarter of college early and postponed my first finals week. Once the fire was contained after the holidays, I thought I would be returning to a somewhat normal college experience...until the Montecito Mudslides happened. After a quick weekend trip home in January, the 101 closure due to these mudslides meant in order to get back to school I needed to take a short boat trip from Ventura Harbor to Santa Barbara. 
+Just as the Thomas Fire was nearing complete containment, heavy rainfall on January 9, 2019 washed away massive amounts of mud and debris loosened from the areas burned by the fire. These mudslides sadly resulted in 23 deaths and the destruction of around 100 residences. After a quick weekend trip home in January, the Highway 101 closure due to these mudslides meant in order to get back to school I needed to take a short boat trip from Ventura Harbor to Santa Barbara.
 
-Just as the Thomas Fire was nearing complete containment, heavy rainfall on January 9 washed away massive amounts of mud and debris loosened from the areas burned by the fire. These mudslides sadly resulted in 23 deaths and the destruction of around 100 residences. 
-
-By using the `readNWISuv` function, I can read in the water discharge data from the USGS for January 9, 2018 to see when rainfall was most intense. 
+In the time series plot above, I used the `readNWISdv` to retrieve *daily* values of water discharge. By using the `readNWISuv` function, I can download data that includes readings for every 15 minutes on a given day. Filtering for January 9, 2018, I can look at the frequency and intensity of rainfall for this particular day. 
 
 ```{r}
 # getting instantaneous data for January 9 to look at water discharge 
@@ -101,4 +99,8 @@ ggplot(combined_jan_9_18, aes(x = dateTime, y = discharge)) +
        subtitle = "2018-01-09",
        x = "Time") 
 ```
-From the above plot, we can see that water discharge peaked at around 6000 cubic feet per second at about 7 am. Compared to the maximum discharge in 2021 so far of 15 cubic feet per second, this highlights the intensity of the rainfall that triggered the Montecito Mudslides in January of 2018. In a place of such low rainfall like Santa Barbara County, it is unlikely that such a massive rain event would occur and bring with it such devastating consequences, but the burn scars left by the Thomas Fire made these mudslides practically inevitable. 
+
+From the above plot, we can see that water discharge peaked at around 6000 cubic feet per second at about 7 am on January 9. Compared to the maximum discharge in 2021 so far of 15 cubic feet per second, this highlights the intensity of the rainfall that triggered the Montecito Mudslides back in 2018. In a place of such low rainfall like Santa Barbara County, it is unlikely that such a massive rain event would occur and bring with it such devastating consequences, but the burn scars left by the Thomas Fire made these mudslides practically inevitable.
+
+## Takeaways
+Using an API to access and download data was extremely simple and fast. Instead of taking the time to download massive csv files off the internet to then use in an R script, using a package like `dataRetrieval` (or `metajam` which is used to access DataONE datasets) streamlines this process. It also makes it quick and easy to edit your code in case your dates or regions of interest change, as opposed to going back to the website to download another couple csv files. 
