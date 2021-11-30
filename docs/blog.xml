@@ -7,7 +7,18 @@
     <description>My Website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 02 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Are California wildfires getting more intense in the North or South? </title>
+      <dc:creator>Felicia Cruz</dc:creator>
+      <link>https://fmcruz23.github.io/posts/2021-11-29-eds-222-final-blog</link>
+      <description>EDS 222 Final Project: Exploring geographic trends of wildfire intensity in California over time</description>
+      <category>MEDS</category>
+      <category>Statistics</category>
+      <guid>https://fmcruz23.github.io/posts/2021-11-29-eds-222-final-blog</guid>
+      <pubDate>Mon, 29 Nov 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fmcruz23.github.io/posts/2021-11-29-eds-222-final-blog/2021-fire-map.png" medium="image" type="image/png" width="920" height="824"/>
+    </item>
     <item>
       <title>Using an API to Programmatically Access and Download Data</title>
       <dc:creator>Felicia Cruz</dc:creator>
