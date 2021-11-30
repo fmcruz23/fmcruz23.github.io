@@ -10,6 +10,7 @@ author:
     url: {}
 date: 11-29-2021
 output:
+  pdf_document:
   distill::distill_article:
     code_folding: true
     self_contained: false
@@ -88,7 +89,7 @@ The statistics describing the frequency, intensity, and destructiveness of Calif
 
 In the past couple decades, California's wildfire season has progressively gotten worse. In recent years especially, fires seem to be getting both more intense and more frequent. For example, the 2017 season was the most destructive wildfire season on record at the time, with 1.2 million acres burned. The largest fire during that season was the Thomas Fire in Santa Barbara County, which was California's largest modern wildfire at the time. In 2020, 4.2 million acres were burned, amounting to more than 4% of the state's total land. This resulted in 2020 being the largest wildfire season recorded in California's modern history. The August 2020 Complex Fire alone burned more than 1 million acres, making it the first "gigafire" on record. 
 
-```{r, fig.cap = "Total Acres Burned (2013-2019)"}
+```{r, fig.width = 6, fig.height = 3, fig.cap = "Total Acres Burned (2013-2019)"}
 # total acres burned by year and region 
 
 acres_by_region <- fires_sub %>% 
