@@ -2495,8 +2495,8 @@ Show code
 </code></pre>
 </div>
 </details>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="eds-222-final-blog_files/figure-html5/unnamed-chunk-4-1.png" alt="Total Acres Burned (2013-2019). Acres burned in the North spiked in 2018, followed by a large drop-off in 2019." width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="eds-222-final-blog_files/figure-html5/unnamed-chunk-4-1.png" alt="Total Acres Burned (2013-2019). Acres burned in the North spiked in 2018, followed by a large drop-off in 2019." width="480" />
 <p class="caption">
 Figure 1: Total Acres Burned (2013-2019). Acres burned in the North spiked in 2018, followed by a large drop-off in 2019.
 </p>
@@ -2506,6 +2506,7 @@ Figure 1: Total Acres Burned (2013-2019). Acres burned in the North spiked in 20
 <p>From my preliminary research, there does not seem to be existing evidence on this question. While many articles discuss trends in wildfire season as a whole and factors that contribute to the growing wildfires in California, there is not much to be said about how geographic location is potentially correlated with changes in wildfires over time.</p>
 <h2 id="data-description">Data Description</h2>
 <p>To explore changes in California’s wildfire season and compare trends in the North to the South, I will be using a dataset which contains over 1,600 wildfire events in the state between 2013 and 2020. This dataset is made available on Kaggle.com and was originally scraped from records on the CAL FIRE website. For each fire, this dataset contains 40 variables; for the purposes of this analysis, the most relevant variables include latitude and longitude, start date, and acres burned. A potential limitation of this dataset is that it only includes wildfires responded to by CAL FIRE; many wildfire events that contribute to the overall trends in the north and the south may not be included in this dataset.</p>
+<p>The dataset can be found here: <a href="https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020" class="uri">https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020</a></p>
 <h2 id="analysis-plan">Analysis Plan</h2>
 <p>Before looking at differences in geographic trends, I will first explore how start date affects wildfire intensity by running the following regression:</p>
 <p><span class="math display">\[acres\_burned_i=\beta_{0}+\beta_{1} \cdot started_i + \varepsilon_i\]</span></p>
@@ -2728,8 +2729,8 @@ Show code
 </code></pre>
 </div>
 </details>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="eds-222-final-blog_files/figure-html5/unnamed-chunk-7-1.png" alt="Acres Burned vs. Start Date and Region" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="eds-222-final-blog_files/figure-html5/unnamed-chunk-7-1.png" alt="Acres Burned vs. Start Date and Region" width="480" />
 <p class="caption">
 Figure 2: Acres Burned vs. Start Date and Region
 </p>
@@ -2891,14 +2892,14 @@ Show code
 </code></pre>
 </div>
 </details>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="eds-222-final-blog_files/figure-html5/unnamed-chunk-12-1.png" alt="Acres Burned vs. Start Date and Region after Winsorization" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
+<img src="eds-222-final-blog_files/figure-html5/unnamed-chunk-12-1.png" alt="Acres Burned vs. Start Date and Region after Winsorization" width="480" />
 <p class="caption">
 Figure 3: Acres Burned vs. Start Date and Region after Winsorization
 </p>
 </div>
 </div>
-<p>Lastly, after winsorizing <code>acres_burned</code> at the 99th percentile, I decided to drop the observations above the 99th percentile entirely as a sensitivity check for my model. After re-running my interaction model, based on the results in Table 4 it does seem that my original model was sensitive to the outliers. Now, the p-value for the interaction term is 0.03 which is so much lower than the original results and the winsorized results.</p>
+<p>Lastly, after winsorizing <code>acres_burned</code> at the 99th percentile, I decided to drop the observations above the 99th percentile entirely as a sensitivity check for my model. After re-running my interaction model, based on the results in Table 4 it does seem that my original model was sensitive to the outliers. Now, the p-value for the interaction term is 0.03 which is so much lower than the original results and the winsorized results. While this would suggest significance at the 5% level, I think more analysis would need to be done to see if dropping outliers is the appropriate route to take.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
@@ -3018,9 +3019,10 @@ started:north_southSouth
 </table>
 </div>
 <h2 id="further-analysis">Further Analysis</h2>
-<p>Overall, more data would be needed to perform a more robust and comprehensive analysis to accurately assess how regional location affects the trends in wildfire intensity in California over time. This dataset only includes wildfire events during a seven year span from 2013-2019. To get a more representative picture of the trends in acres burned for northern and southern wildfires in California over time, a much larger temporal range is needed. Additionally, 2020 data was not included which means observations from the largest fire season on record are not taken into account here. With more data points spanning a 20-30 year period, I suspect much more interesting and informative results.</p>
+<p>Overall, more data would be needed to perform a more robust and comprehensive analysis to accurately assess how regional location affects the trends in wildfire intensity in California over time. This dataset is vry limited in that it only includes wildfire events during a seven year span from 2013-2019. To get a more representative picture of the trends in acres burned for northern and southern wildfires in California over time, a much larger temporal range is needed. Additionally, 2020 data was not included which means observations from the largest fire season on record are not taken into account here. With more data points spanning a 20-30 year period, I suspect much more interesting and informative results.</p>
 <p>Beyond doing a regression analysis to explore differences in geographic trends in wildfire intensity over time, doing time series analyses to produce predictions of wildfire intensity would also be useful. This type of analysis would be of interest to government organizations, first responders in California, and the general public living in fire-prone areas of the state.</p>
 <p>Lastly, looking at seasonal trends over time can help identify if and how the wildfire season itself is changing. This type of analysis could help answer other questions such as: Is the wildfire season in California getting longer? Are more intense wildfires happening at a certain point in the season?</p>
+<p>Link to my GitHub repository: <a href="https://github.com/fmcruz23/fmcruz23.github.io/tree/main/_posts/2021-11-29-eds-222-final-blog" class="uri">https://github.com/fmcruz23/fmcruz23.github.io/tree/main/_posts/2021-11-29-eds-222-final-blog</a></p>
 <h2 id="references">References</h2>
 <p>California Department of Forestry and Fire Protection (CAL FIRE). “2018 Incident Archive.” Cal Fire Department of Forestry and Fire Protection, <a href="https://www.fire.ca.gov/incidents/2018/" class="uri">https://www.fire.ca.gov/incidents/2018/</a>.</p>
 <p>California Department of Forestry and Fire Protection (CAL FIRE). “2020 Incident Archive.” Cal Fire Department of Forestry and Fire Protection, <a href="https://www.fire.ca.gov/incidents/2020/" class="uri">https://www.fire.ca.gov/incidents/2020/</a>.</p>

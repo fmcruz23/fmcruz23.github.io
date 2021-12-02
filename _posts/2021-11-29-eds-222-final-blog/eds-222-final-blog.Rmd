@@ -8,14 +8,14 @@ categories:
 description: |
   EDS 222 Final Project: Exploring geographic trends of wildfire intensity in California over time
 output:
+  pdf_document:
+    includes:  
+      in_header: my_header.tex
   distill::distill_article:
     toc: yes
     toc_float: yes
     code_folding: yes
     self_contained: no
-  pdf_document:
-    includes:  
-      in_header: my_header.tex
   html_document:
     toc: yes
     df_print: paged
@@ -92,7 +92,7 @@ The statistics describing the frequency, intensity, and destructiveness of Calif
 
 In the past couple decades, California's wildfire season has progressively gotten worse. A recent study by researchers at UC Irvine found that the annual burn season has lengthened since 2000 and that the yearly peak has shifted from August to July. In recent years especially, fires are getting both more intense and more frequent. For example, the 2017 season was the most destructive wildfire season on record at the time, with 1.2 million acres burned. The largest fire during that season was the Thomas Fire in Santa Barbara County, which was California's largest modern wildfire at the time. In 2020, 4.2 million acres were burned, amounting to more than 4% of the state's total land. This resulted in 2020 being the largest wildfire season recorded in California's modern history. The August 2020 Complex Fire alone burned more than 1 million acres, making it the first "gigafire" on record. 
 
-```{r, fig.width = 6, fig.height = 3, fig.cap = "Total Acres Burned (2013-2019). Acres burned in the North spiked in 2018, followed by a large drop-off in 2019."}
+```{r, fig.width = 5, fig.height = 2, fig.cap = "Total Acres Burned (2013-2019). Acres burned in the North spiked in 2018, followed by a large drop-off in 2019.", fig.align='center'}
 # total acres burned by year and region 
 
 acres_by_region <- fires_sub %>% 
@@ -117,6 +117,8 @@ From my preliminary research, there does not seem to be existing evidence on thi
 ## Data Description
 
 To explore changes in California's wildfire season and compare trends in the North to the South, I will be using a dataset which contains over 1,600 wildfire events in the state between 2013 and 2020. This dataset is made available on Kaggle.com and was originally scraped from records on the CAL FIRE website. For each fire, this dataset contains 40 variables; for the purposes of this analysis, the most relevant variables include latitude and longitude, start date, and acres burned. A potential limitation of this dataset is that it only includes wildfires responded to by CAL FIRE; many wildfire events that contribute to the overall trends in the north and the south may not be included in this dataset.
+
+The dataset can be found here: https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020
 
 ## Analysis Plan
 
@@ -168,7 +170,7 @@ mod_2_summary <- mod_2 %>%
 mod_2_summary
 ```
 
-```{r, fig.cap= "Acres Burned vs. Start Date and Region", fig.width = 6, fig.height = 4}
+```{r, fig.cap= "Acres Burned vs. Start Date and Region", fig.width = 5, fig.height = 3, fig.align='center'}
 ggplot(data = fires_sub, aes(x = started, y = acres_burned, color = north_south)) +
   geom_point(alpha = 0.4) +
   geom_line(data = augment(mod_2), aes(y = .fitted, color = north_south)) +
@@ -241,7 +243,7 @@ mod_4_summary
 ```
 
 
-```{r, fig.cap = "Acres Burned vs. Start Date and Region after Winsorization", fig.width = 6, fig.height = 4}
+```{r, fig.cap = "Acres Burned vs. Start Date and Region after Winsorization", fig.width = 5, fig.height = 3, fig.align='center'}
 ggplot(data = fires_wins, aes(x = started, y = acres_burned, color = north_south)) +
   geom_point(alpha = 0.4) +
   geom_line(data = augment(mod_4), aes(y = .fitted)) +
@@ -255,7 +257,7 @@ ggplot(data = fires_wins, aes(x = started, y = acres_burned, color = north_south
 ```
 
 
-Lastly, after winsorizing `acres_burned` at the 99th percentile, I decided to drop the observations above the 99th percentile entirely as a sensitivity check for my model. After re-running my interaction model, based on the results in Table 4 it does seem that my original model was sensitive to the outliers. Now, the p-value for the interaction term is 0.03 which is so much lower than the original results and the winsorized results. 
+Lastly, after winsorizing `acres_burned` at the 99th percentile, I decided to drop the observations above the 99th percentile entirely as a sensitivity check for my model. After re-running my interaction model, based on the results in Table 4 it does seem that my original model was sensitive to the outliers. Now, the p-value for the interaction term is 0.03 which is so much lower than the original results and the winsorized results. While this would suggest significance at the 5% level, I think more analysis would need to be done to see if dropping outliers is the appropriate route to take. 
 
 ```{r, echo = FALSE}
 # drop observation if above the 99th percentile 
@@ -279,11 +281,13 @@ mod_5_summary
 
 ## Further Analysis
 
-Overall, more data would be needed to perform a more robust and comprehensive analysis to accurately assess how regional location affects the trends in wildfire intensity in California over time. This dataset only includes wildfire events during a seven year span from 2013-2019. To get a more representative picture of the trends in acres burned for northern and southern wildfires in California over time, a much larger temporal range is needed. Additionally, 2020 data was not included which means observations from the largest fire season on record are not taken into account here. With more data points spanning a 20-30 year period, I suspect much more interesting and informative results. 
+Overall, more data would be needed to perform a more robust and comprehensive analysis to accurately assess how regional location affects the trends in wildfire intensity in California over time. This dataset is vry limited in that it only includes wildfire events during a seven year span from 2013-2019. To get a more representative picture of the trends in acres burned for northern and southern wildfires in California over time, a much larger temporal range is needed. Additionally, 2020 data was not included which means observations from the largest fire season on record are not taken into account here. With more data points spanning a 20-30 year period, I suspect much more interesting and informative results. 
 
 Beyond doing a regression analysis to explore differences in geographic trends in wildfire intensity over time, doing time series analyses to produce predictions of wildfire intensity would also be useful. This type of analysis would be of interest to government organizations, first responders in California, and the general public living in fire-prone areas of the state. 
 
 Lastly, looking at seasonal trends over time can help identify if and how the wildfire season itself is changing. This type of analysis could help answer other questions such as: Is the wildfire season in California getting longer? Are more intense wildfires happening at a certain point in the season? 
+
+Link to my GitHub repository: https://github.com/fmcruz23/fmcruz23.github.io/tree/main/_posts/2021-11-29-eds-222-final-blog 
 
 ## References
 
