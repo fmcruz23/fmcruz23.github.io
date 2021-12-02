@@ -180,6 +180,7 @@ ggplot(data = fires_sub, aes(x = started, y = acres_burned, color = north_south)
         plot.caption = element_text(hjust = 0))
 ```
 
+
 ### Winsorization at the 99th percentile 
 
 In an attempt to eliminate some of the noise caused by this wildfire event data, I decided to winsorize my `acres_burned` values at the 99th percentile (90,288 acres).  
@@ -204,7 +205,7 @@ fires_wins <- fires_wins %>%
 ```
 
 
-```{r, echo = FALSE, include = FALSE}
+```{r, include = FALSE, echo = FALSE}
 # new regression model after winsorization 
 mod_3 <- lm(acres_burned ~ started, data = fires_wins)
 
@@ -219,6 +220,9 @@ ggplot(data = fires_wins, aes(x = started, y = acres_burned)) +
 
 ```
 
+Comparing these results to the previous regression before winsorization, $\beta_{1}$, the slope of the line for fires occurring in northern California, is smaller. Additionally, the slope for the South regression line after winsorization is -0.45, compared to a barely positive slope previously. 
+
+The p-value for the coefficient on the interaction term decreases after winsorization from 0.44 to 0.31, but it is still far too high to reject the hypothesis that there are different trends in California wildfire intensity based on region. 
 
 ```{r}
 # new multiple regression model after winsorization 
@@ -228,7 +232,7 @@ mod_4 <- lm(acres_burned ~ started + north_south + started*north_south, data = f
 mod_4_summary <- mod_4 %>% 
   summary() %>% 
   xtable() %>% 
-  kable(caption = "Multiple linear regression after winsorization at the 97th percentile",
+  kable(caption = "Multiple linear regression after winsorization at the 99th percentile",
         digits = 2) %>% 
   kable_styling(latex_options = "HOLD_position")
 
@@ -251,9 +255,27 @@ ggplot(data = fires_wins, aes(x = started, y = acres_burned, color = north_south
 ```
 
 
-Comparing these results to the previous regression before winsorization, $\beta_{1}$, the slope of the line for fires occurring in northern California, is smaller. Additionally, the slope for the South regression line after winsorization is -0.45, compared to a barely positive slope previously. 
+Lastly, after winsorizing `acres_burned` at the 99th percentile, I decided to drop the observations above the 99th percentile entirely as a sensitivity check for my model. After re-running my interaction model, based on the results in Table 4 it does seem that my original model was sensitive to the outliers. Now, the p-value for the interaction term is 0.03 which is so much lower than the original results and the winsorized results. 
 
-The p-value for the coefficient on the interaction term decreases after winsorization from 0.44 to 0.31, but it is still far too high to reject the hypothesis that there are different trends in California wildfire intensity based on region. 
+```{r, echo = FALSE}
+# drop observation if above the 99th percentile 
+fires_drop_99 <- fires_sub %>% 
+  filter(acres_burned <= 90288)
+
+# run regression again 
+mod_5 <- lm(acres_burned ~ started + north_south + started*north_south, data = fires_drop_99)
+
+mod_5_summary <- mod_5 %>% 
+  summary() %>% 
+  xtable() %>% 
+  kable(caption = "Multiple linear regression after removing observations above the 99th percentile",
+        digits = 2) %>% 
+  kable_styling(latex_options = "HOLD_position")
+
+mod_5_summary
+
+```
+
 
 ## Further Analysis
 
@@ -274,5 +296,4 @@ California Department of Forestry and Fire Protection (CAL FIRE). “2020 Incide
 “One Reason for Northern California's Terrible Fire Season: Less Rain than Southern California.” Los Angeles Times, Los Angeles Times, 1 Oct. 2020, https://www.latimes.com/california/story/2020-10-01/northern-california-fire-season-less-rain-than-southern-california. 
 
 Sadegh, Mojtaba, et al. “The Year the West Was Burning: How the 2020 Wildfire Season Got so Extreme.” ScholarWorks, https://scholarworks.boisestate.edu/civileng_facpubs/149/. 
-
 
