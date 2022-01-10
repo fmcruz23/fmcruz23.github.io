@@ -7,7 +7,18 @@
     <description>My Website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 02 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Intro to Maps</title>
+      <dc:creator>Felicia Cruz</dc:creator>
+      <link>https://fmcruz23.github.io/posts/2022-01-09-intro-maps</link>
+      <description>Using `tmap` to create static and interactive maps.</description>
+      <category>packages</category>
+      <category>MEDS</category>
+      <guid>https://fmcruz23.github.io/posts/2022-01-09-intro-maps</guid>
+      <pubDate>Sun, 09 Jan 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://fmcruz23.github.io/posts/2022-01-09-intro-maps/intro-maps_files/figure-html5/unnamed-chunk-2-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Are California Wildfires Getting more Intense in the North or South?</title>
       <dc:creator>Felicia Cruz</dc:creator>

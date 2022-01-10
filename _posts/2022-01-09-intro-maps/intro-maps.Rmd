@@ -1,0 +1,110 @@
+---
+title: "Intro to Maps"
+categories:
+  - packages
+  - MEDS
+description: |
+  Using `tmap` to create static and interactive maps.
+author:
+  - name: Felicia Cruz
+    url: {}
+date: 01-09-2022
+output:
+  distill::distill_article:
+    code_folding: true
+    self_contained: false
+    toc: true 
+    toc_flot: true
+---
+
+As part of an assignment for my Spatial Analysis class last fall, we were tasked with exploring any basic dataset and producing a map in R. My class partner and I used the `tmap` package to make a map showing used car prices in 1960 across the United States. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(RColorBrewer)
+library(rgeos)
+library(rnaturalearth)
+library(sf)
+library(spData)
+library(tidyverse)
+library(tmap)
+library(classInt)
+library(janitor)
+library(stats)
+```
+
+Before mapping, we did some light data cleaning and merged two datasets together to create one dataframe that contained our state information, geometries, and prices. This is the dataframe we then used to make ours maps.
+
+
+```{r}
+# cleaning up used.cars and making sure the states are in their own column
+used_cars <- used.cars %>% 
+  clean_names() %>% 
+  rownames_to_column() %>% 
+  rename(state = rowname)
+
+# cleaning up us_states, making the state names abbreviated, and setting the column name to match used_cars
+us_states <- us_states %>% 
+  clean_names() %>% 
+  mutate(state = setNames(state.abb, state.name)[name])
+
+# merging the two data frames so that the used_car data has the US geometry attached to it
+us_cars <- merge(us_states, used_cars, by = "state", all.x = T)
+
+
+```
+
+```{r}
+# making a static map to show/explore the differences between static and interactive
+
+tmap_mode("plot")
+
+tm_us <- tm_shape(us_cars) + # pulling data from the dataframe us_cars
+  tm_fill(col = "price_1960", #filling the states based on the column price_1960
+          title = "Price in 1960 ($)", #changing the legend title
+          palette = "Reds", #using ColorBrewer to make the range of colors red
+          breaks = c(1418, 1452, 1487, 1521, 1556, 1590, 1625, 1659),
+          colorNA = "black") + #manually changing the breaks
+  tm_style("classic") + #changing the style of the basemap
+  tm_compass(size = 3) #no north arrow and no graticule because the map is at a large a scale and interactive
+
+tm_us +
+  tm_layout(main.title = "Used Car Price in 1960 by State",
+            main.title.position = "center",
+            main.title.fontfamily = "Times",
+            main.title.fontface = "bold",
+            legend.bg.color = "grey80",
+            legend.frame = TRUE,
+            legend.title.fontface = "bold",
+            legend.title.fontfamily = "Times",
+            legend.text.fontfamily = "Times",
+            inner.margins = 0.15,
+            legend.format=list(fun=function(x) formatC(x, digits=0, format="d"))) +
+  tm_credits(text = "Used car prices in the United States in 1960. Darker red indicates a higher price (in dollars). \nSource: used.car data Hanna, F. A. 1966, us_states data from the US Census",
+size = 2,
+position = c("right", "bottom"))
+```
+
+
+
+In order to incorporate more detailed information, the interactive map below allows viewers to click on a state and see the specific 1960 used car price. With this functionality, viewers can compare states by both the colors and specific values. 
+
+
+
+```{r}
+# making the tmap interactive
+
+tmap_mode("view")
+
+tm_shape(us_cars) + 
+  tm_fill(col = "price_1960", # filling the states based on the column price_1960
+          title = "Price in 1960 (Dollars)", 
+          palette = "Reds", # using ColorBrewer to make the range of colors red
+          breaks = c(1418, 1452, 1487, 1521, 1556, 1590, 1625, 1659),  # manually changing the breaks
+          colorNA = "black") +
+  tm_layout(title = "hello") +
+  tm_style("classic") + #changing the style of the basemap
+  tm_scale_bar() 
+```
+
+
