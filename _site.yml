@@ -11,7 +11,7 @@ navbar:
     - text: "About"
       href: my_bio.html  
     - text: "Resume"
-      href: Resume_10_11_2021.pdf
+      href: resume_jan_project_focus.pdf
     - text: "My Blog"
       href: blog.html
   source_url: https://github.com/fmcruz23/fmcruz23.github.io
