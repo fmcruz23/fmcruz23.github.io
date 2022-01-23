@@ -7,7 +7,19 @@
     <description>My Website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 09 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Protecting Whales from Ships</title>
+      <dc:creator>Felicia Cruz</dc:creator>
+      <link>https://fmcruz23.github.io/posts/2022-01-23-whales</link>
+      <description>This Python analysis uses whale sightings and vessel data to suggest a speed reduction zone for the coast of Dominica.</description>
+      <category>MEDS</category>
+      <category>Python</category>
+      <category>Spatial Analysis</category>
+      <guid>https://fmcruz23.github.io/posts/2022-01-23-whales</guid>
+      <pubDate>Sun, 23 Jan 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://fmcruz23.github.io/posts/2022-01-23-whales/whale.jpeg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Intro to Maps</title>
       <dc:creator>Felicia Cruz</dc:creator>

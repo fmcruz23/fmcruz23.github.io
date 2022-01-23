@@ -1,0 +1,98 @@
+---
+title: "aqi"
+description: |
+  A short description of the post.
+author:
+  - name: Felicia Cruz
+    url: {}
+date: 01-18-2022
+categories: 
+  - MEDS
+  - Python
+output:
+  distill::distill_article:
+    self_contained: false
+preview: images/dataretrieval_hex.png.crdownload
+draft: true 
+---
+### Import Packages
+
+
+```python
+import pandas as pd
+import numpy as np
+import requests
+import matplotlib.pyplot as plt
+import datetime
+import geopandas as gpd
+import contextily as cx
+
+from bs4 import BeautifulSoup
+from io import BytesIO
+from zipfile import ZipFile
+from urllib.request import urlopen
+```
+
+
+
+```{r}
+library(reticulate)
+reticulate::use_python("/usr/bin/python")
+
+matplotlib <- import("matplotlib")
+matplotlib$use("Agg", force = TRUE)
+```
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import datetime
+```
+
+```{python}
+aqi_us = pd.read_csv("aqi_us.csv")
+```
+
+```{python}
+# format date as datetime
+aqi_us['Date'] = pd.to_datetime(aqi_us["Date"], format = '%Y-%m-%d')
+
+# convert Category column to category data type
+aqi_us['Category'] = aqi_us.Category.astype('category')
+
+# convert object to integer
+aqi_us['AQI'] = pd.to_numeric(aqi_us['AQI'])
+
+# check data types 
+aqi_us.dtypes
+```
+
+
+Unhealthy counts for the US 
+```{python}
+# subset data for readings in the unhealthy range and above (greater than 150)
+aqi_unhealthy = aqi_us[aqi_us['AQI'] > 150]
+aqi_unhealthy['Category'].unique()
+
+```
+
+```{python}
+# pull out year to new column from the datetime column in aqi_unhealthy
+aqi_unhealthy.loc[:, ('year')] = aqi_unhealthy.loc[:, ('Date')].dt.year
+```
+
+
+```{python}
+counts_aqi_unhealthy = aqi_unhealthy.groupby('year').size().reset_index(name='count')
+```
+
+
+```{python}
+fig, ax = plt.subplots(figsize=(10,6), dpi = 300)
+
+plt.plot(counts_aqi_unhealthy['year'], counts_aqi_unhealthy['count'],
+         label = 'All Parameters', ls = 'dashed', color = 'black')
+```
+
