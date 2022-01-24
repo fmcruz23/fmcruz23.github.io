@@ -21,6 +21,18 @@
       <media:content url="https://fmcruz23.github.io/posts/2022-01-23-whales/whale.jpeg" medium="image" type="image/jpeg"/>
     </item>
     <item>
+      <title>Analyzing Air Quality Trends in the US with EPA AQI Data</title>
+      <dc:creator>Felicia Cruz</dc:creator>
+      <link>https://fmcruz23.github.io/posts/2022-01-18-aqi</link>
+      <description>For our Remote Sensing final project, my group and I analyzed air quality trends in the US, and California more specifically, by using AQI datasets from the EPA.</description>
+      <category>MEDS</category>
+      <category>Python</category>
+      <category>Remote Sensing</category>
+      <guid>https://fmcruz23.github.io/posts/2022-01-18-aqi</guid>
+      <pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://fmcruz23.github.io/posts/2022-01-18-aqi/output_54_1.png" medium="image" type="image/png" width="3015" height="2060"/>
+    </item>
+    <item>
       <title>Intro to Maps</title>
       <dc:creator>Felicia Cruz</dc:creator>
       <link>https://fmcruz23.github.io/posts/2022-01-09-intro-maps</link>
