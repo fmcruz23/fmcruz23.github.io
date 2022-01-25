@@ -4,12 +4,10 @@ image: "norway_headshot_crop.JPG"
 links:
   - label: '<i class="fab fa-linkedin"></i> LinkedIn'
     url: "https://www.linkedin.com/in/cruz-felicia/"
-  - label: '<i class="fab fa-twitter"></i> Twitter'
-    url: "https://twitter.com/"
   - label: '<i class="fab fa-github"></i> GitHub'
     url: "https://github.com/fmcruz23"
   - label: '<i class="fa fa-envelope" aria-hidden="true"></i> Email'
-    url: "fmcruz23@gmail.com"
+    url: "mailto:feliciamcruz@bren.ucsb.edu"
 output:
   postcards::trestles
 site: distill::distill_website
